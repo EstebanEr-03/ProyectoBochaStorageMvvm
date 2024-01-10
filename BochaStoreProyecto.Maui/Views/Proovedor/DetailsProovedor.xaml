@@ -10,7 +10,7 @@
                Aspect="AspectFit"/>
 
         <Label x:Name="Nombre"
-               Text="Nombre"
+               Text="{Binding _proovedorTraido.nombreProovedor}"
                FontSize="32"
                TextColor="#3498db"
                HorizontalOptions="Center"/>
@@ -18,19 +18,19 @@
         <StackLayout Spacing="5">
             <StackLayout Orientation="Horizontal" Spacing="5">
                 <Label Text="Duración del Contrato: " FontSize="18" VerticalOptions="Center"/>
-                <Label x:Name="duracionContrato" Text="Duración del Contrato" FontSize="18" VerticalOptions="Center"/>
+                <Label x:Name="duracionContrato" Text="{Binding _proovedorTraido.duracionContrato}" FontSize="18" VerticalOptions="Center"/>
             </StackLayout>
 
             <StackLayout Orientation="Horizontal" Spacing="5">
                 <Label Text="Precio de Importación: " FontSize="18" VerticalOptions="Center"/>
-                <Label x:Name="PrecioImportacion" Text="Precio de Importación" FontSize="18" VerticalOptions="Center"/>
+                <Label x:Name="PrecioImportacion" Text="{Binding _proovedorTraido.precioImportacion}" FontSize="18" VerticalOptions="Center"/>
             </StackLayout>
         </StackLayout>
 
         <StackLayout Orientation="Horizontal" Spacing="10">
             <Button x:Name="Borrar"
                     Text="Borrar"
-                    Clicked="Borrar_Clicked"
+                    Command="{Binding ClickBorrarProovedor}"
                     FontSize="20"
                     HorizontalOptions="FillAndExpand"
                     BackgroundColor="#e74c3c"/>

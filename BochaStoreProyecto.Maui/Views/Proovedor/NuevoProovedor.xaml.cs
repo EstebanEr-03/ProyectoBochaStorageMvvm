@@ -1,22 +1,37 @@
 namespace BochaStoreProyecto.Maui.Views.Proovedor;
 
 using BochaStoreProyecto.Maui.Services;
+using BochaStoreProyecto.Maui.ViewModels.ProovedorViewModel;
 using Proovedor = BochaStoreProyecto.Maui.Models.Proovedor	;
 
 public partial class NuevoProovedor : ContentPage
 {
     private Proovedor _proovedor;
     private readonly APIService _APIService;
+    private NuevoProovedorVM _viewModel;
 
-    public NuevoProovedor(APIService apiservice)
+    public NuevoProovedor(APIService apiservice, Proovedor ProovedorSiExiste)
 	{
-		InitializeComponent();
-        _APIService = apiservice;
+        if (ProovedorSiExiste == null)
+        {
+            InitializeComponent();
+            _APIService = apiservice;
+            _viewModel = new NuevoProovedorVM(apiservice);
+            BindingContext = _viewModel;
+        }
+        else
+        {
+            InitializeComponent();
+            _APIService = apiservice;
+            _viewModel = new NuevoProovedorVM(apiservice, ProovedorSiExiste);
+            BindingContext = _viewModel;
+        }
 
     }
     protected override void OnAppearing()
     {
         base.OnAppearing();
+        var ProovedorDelVM = _viewModel._proovedor;
         _proovedor = BindingContext as Proovedor;
         if (_proovedor != null)
         {
@@ -27,7 +42,7 @@ public partial class NuevoProovedor : ContentPage
         }
     }
 
-    private async void OnClickGuardarNuevoProducto(object sender, EventArgs e)
+    /*private async void OnClickGuardarNuevoProducto(object sender, EventArgs e)
     {
         if (_proovedor != null)
         {
@@ -54,5 +69,5 @@ public partial class NuevoProovedor : ContentPage
             await _APIService.PostProovedor(proovedor);
         }
         await Navigation.PopAsync();
-    }
+    }*/
 }

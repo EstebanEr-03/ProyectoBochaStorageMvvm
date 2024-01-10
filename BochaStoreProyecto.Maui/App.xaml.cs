@@ -15,7 +15,7 @@ namespace BochaStoreProyecto.Maui
             var flyoutPage = new FlyoutPageT(apiservice);
             //flyoutPage.Detail = new NavigationPage(new ProductoPage(apiservice)); // Define la página principal aquí
 
-            MainPage =new NavigationPage(new ProductoPage(apiservice));
+            MainPage =new NavigationPage(new ProovedorPage(apiservice));
            // MainPage = flyoutPage;
 
             //MainPage = new FlyoutPageT(apiservice);
