@@ -4,6 +4,15 @@
         <name>BochaStoreProyecto.Maui</name>
     </assembly>
     <members>
+        <member name="T:BochaStoreProyecto.Maui.ViewModels.MarcaVM.MarcaPageVM">
+            <inheritdoc/>
+        </member>
+        <member name="F:BochaStoreProyecto.Maui.ViewModels.MarcaVM.MarcaPageVM._traerMarcasCommand">
+            <summary>The backing field for <see cref="P:BochaStoreProyecto.Maui.ViewModels.MarcaVM.MarcaPageVM.traerMarcasCommand"/>.</summary>
+        </member>
+        <member name="P:BochaStoreProyecto.Maui.ViewModels.MarcaVM.MarcaPageVM.traerMarcasCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IRelayCommand"/> instance wrapping <see cref="M:BochaStoreProyecto.Maui.ViewModels.MarcaVM.MarcaPageVM.traerMarcas"/>.</summary>
+        </member>
         <member name="T:BochaStoreProyecto.Maui.ViewModels.ProductoViewModel.ProductoPageViewModel">
             <inheritdoc/>
         </member>

@@ -10,13 +10,13 @@
                Aspect="AspectFit"/>
 
         <Label x:Name="Nombre"
-               Text="Nombre"
+               Text="{Binding _marcaTraido.nombreMarca}"
                FontSize="32"
                TextColor="#3498db"
                HorizontalOptions="Center"/>
 
         <Label x:Name="Id"
-               Text="Id"
+               Text="{Binding _marcaTraido.idMarca}"               
                FontSize="28"
                TextColor="#34495e"
                HorizontalOptions="Center"/>
@@ -24,7 +24,7 @@
         <StackLayout Orientation="Horizontal" Spacing="10">
             <Button x:Name="Borrar"
                     Text="Borrar"
-                    Clicked="Borrar_Clicked"
+                    Command="{Binding ClickBorrarMarca}"
                     FontSize="20"
                     HorizontalOptions="FillAndExpand"
                     BackgroundColor="#e74c3c"/>

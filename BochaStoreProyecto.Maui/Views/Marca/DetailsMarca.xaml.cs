@@ -1,36 +1,27 @@
 namespace BochaStoreProyecto.Maui.Views.Marca;
 
 using BochaStoreProyecto.Maui.Services;
+using BochaStoreProyecto.Maui.ViewModels.MarcaVM;
 using Marca = BochaStoreProyecto.Maui.Models.Marca;
 
 public partial class DetailsMarca : ContentPage
 {
-    private Marca _marca;
     private APIService _APIService;
-    public DetailsMarca(APIService apiservice)
+    private DetailsMarcaVM _viewModel;
+    private Marca marcaTraido;
+
+    public DetailsMarca(APIService apiservice,Marca marca)
 	{
 		InitializeComponent();
+        marcaTraido = marca;
         _APIService = apiservice;
-
-    }
-    protected override void OnAppearing()
-    {
-        base.OnAppearing();
-        _marca = BindingContext as Marca;
-        Nombre.Text = _marca.nombreMarca;
-        Id.Text = "Id: "+_marca.idMarca.ToString();
-    }
-    private async void Borrar_Clicked(object sender, EventArgs e)
-    {
-        await _APIService.DeleteMarca(_marca.idMarca);
-        await Navigation.PopAsync();
+        _viewModel = new DetailsMarcaVM(_APIService, marca);
+        BindingContext = _viewModel;
     }
 
     private async void Editar_Clicked(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new NuevaMarca(_APIService)
-        {
-            BindingContext = _marca,
-        });
+
+        await Navigation.PushAsync(new NuevaMarca(_APIService, _viewModel._marcaTraido));
     }
 }

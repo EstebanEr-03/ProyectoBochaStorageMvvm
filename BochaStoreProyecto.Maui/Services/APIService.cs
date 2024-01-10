@@ -17,8 +17,8 @@ namespace BochaStoreProyecto.Maui.Services
         public APIService()
         {
 
-            //_baseUrl = "https://apibochastore20231213042546.azurewebsites.net/";
-            _baseUrl = "http://10.0.2.2:5149";
+            _baseUrl = "https://apibochastore20231213042546.azurewebsites.net/";
+            //_baseUrl = "http://10.0.2.2:5149";
             _httpClient = new HttpClient();
             _httpClient.BaseAddress = new Uri(_baseUrl);
         }

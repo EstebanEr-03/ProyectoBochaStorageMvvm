@@ -1,52 +1,42 @@
 namespace BochaStoreProyecto.Maui.Views.Marca;
 
 using BochaStoreProyecto.Maui.Services;
+using BochaStoreProyecto.Maui.ViewModels.MarcaVM;
+using BochaStoreProyecto.Maui.ViewModels.ProductoViewModel;
 using Marca = BochaStoreProyecto.Maui.Models.Marca;
 
 public partial class NuevaMarca : ContentPage
 {
 
-    private Marca _marca;
     private readonly APIService _APIService;
+    private NuevaMarcaVM _viewModel;
 
-    public NuevaMarca(APIService apiservice)
+
+    public NuevaMarca(APIService apiservice, Marca MarcaSiExiste)
 	{
-		InitializeComponent();
-        _APIService = apiservice;
+        if (MarcaSiExiste == null)
+        {
+            InitializeComponent();
+            _APIService = apiservice;
+            _viewModel = new NuevaMarcaVM(apiservice);
+            BindingContext = _viewModel;
+        }
+        else
+        {
+            InitializeComponent();
+            _APIService = apiservice;
+            _viewModel = new NuevaMarcaVM(apiservice, MarcaSiExiste);
+            BindingContext = _viewModel;
+        }
 
     }
     protected override void OnAppearing()
     {
         base.OnAppearing();
-        _marca = BindingContext as Marca;
-        if (_marca != null)
+        var ProductoDelViewModel = _viewModel._marca;
+        if (ProductoDelViewModel != null)
         {
-            EntryNombre.Text = _marca.nombreMarca;
+            EntryNombre.Text = ProductoDelViewModel.nombreMarca;
         }
-    }
-
-    private async void OnClickGuardarNuevaMarca(object sender, EventArgs e)
-    {
-
-        if (_marca != null)
-        {
-
-            _marca.nombreMarca = EntryNombre.Text;
-
-            await _APIService.PutMarca(_marca.idMarca,_marca);
-        }
-        else
-        {
-            int id = Utils.Utils.ProductosList.Count + 1;
-
-            Marca marca = new Marca
-            {
-                idMarca = 0,
-                nombreMarca = EntryNombre.Text,
-            };
-            //Utils.Utils.ProductosList.Add(producto);
-            await _APIService.PostMarca(marca);
-        }
-        await Navigation.PopAsync();
     }
 }

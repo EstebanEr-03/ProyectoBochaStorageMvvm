@@ -17,7 +17,7 @@
                        VerticalOptions="CenterAndExpand"/>
                 <Label Grid.Column="1"
                        x:Name="Username" 
-                       Text="Productos"
+                       Text="Marcas"
                        FontSize="30"
                        TextColor="White"
                        VerticalOptions="CenterAndExpand"/>
@@ -26,14 +26,15 @@
                     FontSize="15"
                     BackgroundColor="#3498db"
                     TextColor="White"
-                    Clicked="OnClickNuevaMarca"
+                    Command="{Binding ClickNuevaMarca}"
                     CornerRadius="5"
                     HeightRequest="40"/>
         </StackLayout>
 
         <ListView x:Name="listaMarcas"
+                  ItemsSource="{Binding Marcas}"                  
                   RowHeight="160"
-                  ItemSelected="listaMarcas_ItemSelected">
+                  ItemSelected="OnClickShowDetails_ItemSelected">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
