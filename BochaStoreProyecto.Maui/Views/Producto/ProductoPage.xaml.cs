@@ -11,12 +11,13 @@ using BochaStoreProyecto.Maui.ViewModels.ProductoViewModel;
 public partial class ProductoPage : ContentPage
 {
     //ObservableCollection<Producto> products;
-    private readonly APIService _APIService;
+    public readonly APIService _APIService;
     private ProductoPageViewModel _viewModel;
 
     public ProductoPage(APIService apiservice)
     {
         InitializeComponent();
+        _APIService = apiservice;
         _viewModel = new ProductoPageViewModel(apiservice);
         BindingContext = _viewModel;
         

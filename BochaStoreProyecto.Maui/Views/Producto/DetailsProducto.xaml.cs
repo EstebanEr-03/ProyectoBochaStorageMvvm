@@ -15,28 +15,28 @@ public partial class DetailsProducto : ContentPage
     public DetailsProducto(APIService apiservice,Producto producto)
     {
         InitializeComponent();
+        productoTraido = producto;
         _APIService = apiservice;
-        _viewModel = new DetailsProductoViewModel(apiservice,producto);
+        _viewModel = new DetailsProductoViewModel(_APIService, producto);
         BindingContext = _viewModel;
-
     }
-    /*protected override void OnAppearing()
-    {
-        base.OnAppearing();
-        /_producto = BindingContext as Producto;
-        Nombre.Text = _producto.nombreProducto;
-        Descripcion.Text = _producto.descripcionProducto;
-        Precio.Text = _producto.precio.ToString();
-        Stock.Text = _producto.stock.ToString();
-        idMarca.Text = _producto.idMarca.ToString();
-        idProveedor.Text = _producto.idProovedor.ToString();
-        fechaCreacion.Text = _producto.fechaCreacion.ToString();
-    }*/
     /*private async void Borrar_Clicked(object sender, EventArgs e)
     {
-        await _APIService.DeleteProducto(_producto.idProducto);
-        await Navigation.PopAsync();
+        if (productoTraido != null)
+        {
+            int idProductoToDelete = productoTraido.idProducto;
 
+            if (await ConfirmDelete())
+            {
+                await _APIService.DeleteProducto(idProductoToDelete);
+                await Navigation.PopAsync();
+            }
+        }
+
+    }*/
+    /*private async Task<bool> ConfirmDelete()
+    {
+        return await Application.Current.MainPage.DisplayAlert("Confirm Delete", "Are you sure you want to delete this product?", "Yes", "No");
     }*/
 
     private async void Editar_Clicked(object sender, EventArgs e)
